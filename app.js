@@ -11,7 +11,7 @@ var session = require('express-session');
 var app = express();
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-
+var config = require('config');
 passport.serializeUser((user, done) => {
     console.log('user serialize');
     done(null, user);
@@ -22,8 +22,8 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new FacebookStrategy({
-        clientID: '1414757838784943',
-        clientSecret: '3a2a06d3b803e1f1ab4128d5f1e9262a',
+        clientID: config.FACEBOOK_CLIENT_ID,
+        clientSecret: config.FACEBOOK_CLIENT_SECRET,
         callbackURL: 'http://localhost:3000/auth/callback/facebook',
         profileFields:['id','email','photos','displayName','birthday','age_range','gender','hometown','interested_in','location']
     },

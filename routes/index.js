@@ -3,9 +3,11 @@ var router = express.Router();
 let ig = require('instagram-node').instagram();
 let passport = require('passport');
 let https = require('https');
+let config = require('config');
+
 ig.use({
-    client_id: 'c339e511332c4fb2958a0a6b58f644b4',
-    client_secret: 'a704194292cf4ad894ba58de1f09a740'
+    client_id: config.INSTAGRAM_CLIENT_ID,
+    client_secret: config.INSTAGRAM_CLIENT_SECRET
 })
 
 /* GET home page. */
@@ -18,7 +20,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.get('/userinfo', (req, res, next) => {
-    var instaData = req.session.instaClientInfo
+    var instaData = req.session.instaCliengit tInfo
     res.render('userinfo', {
         instaClientInfo: instaData,
         facebookClientInfo : req.user
