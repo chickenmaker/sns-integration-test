@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    div#naverUserInfoSection
+        label naver 유저정보
+        p#userinfo what?
+
+    div#instagramUserInfoSection
+        label instagram 유저 정보
+        p#userInfo_Insta
+            #{JSON.stringify(instaClientInfo)}
+
+    div#facebookUserInfoSection
+        label facebook user info
+        p#userInfo_facebook
+            #{facebookClientInfo}
+
+
+
+    script('text/javascript').
+
+        var naver_id_login = new naver_id_login("23AQ8oIrSWmcMrp9px_0", "http://127.0.0.1:3000/userinfo");
+        // 접근 토큰 값 출력
+        naver_id_login.get_naver_userprofile("naverSignInCallback()");
+        // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+        function naverSignInCallback() {
+            alert(JSON.stringify(inner_profileParams));
+            $('#userinfo')[0].innerHTML = JSON.stringify(inner_profileParams);
+        }
+
+
+
+        // 네이버 사용자 프로필 조회
+

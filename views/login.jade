@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    div#naver_id_login
+    div#instagram_login
+        button#instalogin 인스타 로그인
+    div#youtube_login
+        button#youtubelogin 유투브 로그인
+    div#facebook_login
+        button#facebooklogin 페이스북
+    div#kakao_login
+        button#kakaologin 카카오 로그인
+
+
+
+
+    script('text/javascript').
+        var naver_id_login = new naver_id_login("23AQ8oIrSWmcMrp9px_0", "http://127.0.0.1:3000/userinfo");
+        var state = naver_id_login.getUniqState();
+        naver_id_login.setButton("green", 3, 40);
+
+        naver_id_login.setState(state);
+
+        naver_id_login.init_naver_id_login();
+
+    script('text/javascript').
+
+        $(function () {
+            $('#instalogin').on('click', function () {
+                $(location).attr('href','/auth/instagram');
+            })
+            $('#facebooklogin').on('click', function(){
+                $(location).attr('href','/auth/facebook');
+            })
+        })
+
+
